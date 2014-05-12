@@ -1,0 +1,163 @@
+<%= javascript_include_tag "raphael-min" %>
+<style>
+    div#drawing svg, div#drawing div {
+        border: 1px solid #f00;
+    }
+</style>
+
+<%= form_tag('update') do %>
+    <%= hidden_field_tag 'xref', params[:xref] %>
+
+    <div id="side-nav" class="col-md-2">
+        </br> </br> </br>
+        <div id="controls" class="pull-left" style="margin-left:30px;">
+            <div class="row">
+                <button type="button" id="upButton" class="btn btn-default btn-lg col-md-offset-3">
+                    <span class="glyphicon glyphicon-arrow-up"></span></button>
+            </div>
+            <div class="row">
+                <button type="button" id="leftButton" class="btn btn-default btn-lg">
+                    <span class="glyphicon glyphicon-arrow-left"></span></button>
+                <button type="button" id="rightButton" class="btn btn-default btn-lg">
+                    <span class="glyphicon glyphicon-arrow-right"></span></button>
+            </div>
+            <div class="row">
+                <button type="button" id="downButton" class="btn btn-default btn-lg col-md-offset-3">
+                    <span class="glyphicon glyphicon-arrow-down"></span></button>
+            </div>
+            <div class="row">
+                </br>
+                <button type="button" id="zoomInButton" class="btn btn-default btn-lg">
+                    <span class="glyphicon glyphicon-resize-full"></span></button>
+                <button type="button" id="zoomOutButton" class="btn btn-default btn-lg">
+                    <span class="glyphicon glyphicon-resize-small"></span></button>
+            </div>
+            <div class="row">
+                </br>
+                <%= submit_tag "Save This Set", :class => 'btn btn-default' %>
+            </div>
+        </div>
+    </div>
+
+    <!-- text tag index_name = x|y -->
+    <% @map.each_with_index do |e, i| %>
+        <%=hidden_field_tag "x_pos[#{i+1}]", e.x%>
+        <%=hidden_field_tag "y_pos[#{i+1}]", e.y%>
+    <% end %>
+
+<% end %>
+
+
+</br>
+
+
+<script>
+    $(document).ready(function () {
+        var height = <%=@image.img_height%>;
+        var width = <%=@image.img_width%>;
+
+        var paper = Raphael(200, 60, width, height);
+        var hide = 1; // tooltip initalization
+
+        pathway_img = paper.image('<%=image_path(@image.background)%>', 0, 0, width, height);
+        pathway_img.toBack();
+
+
+
+        var group = paper.set();
+
+        <% @map.each do |e| %>
+            var t = paper.text(<%=e.x.to_i%>, <%=e.y.to_i%>, "<%= e.gene_symbol %>" );
+            group.push( t.attr({'font-size': 14, 'fill': "#0000FF", 'fill-opacity': 1 } ) );
+        <% end %>
+
+
+        /*
+         *  Functions for manipulating the positions
+         */
+
+        function moveLeft(){ group.translate(-10,0) }
+        function moveRight(){ group.translate(10,0) }
+        function moveUp(){ group.translate(0,-10) }
+        function moveDown(){ group.translate(0,10) }
+        function zoomIn(){
+            group.forEach(function(e){
+                var x = e.attr('x')*1.01;
+                var y = e.attr('y')*1.01;
+                e.translate( (x-e.attr('x')) , (y-e.attr('y')) );
+            })
+        }
+        function zoomOut(){
+            group.forEach(function(e){
+                var x = e.attr('x')*0.99;
+                var y = e.attr('y')*0.99;
+                e.translate( -(e.attr('x')-x) , -(e.attr('y')-y) );
+            })
+        }
+
+
+        function updateAll(){
+            group.forEach(function(e){
+                $('#x_pos_'+ e.id).attr('value', e.getBBox().x);
+                $('#y_pos_'+ e.id).attr('value', e.getBBox().y);
+            })
+            console.log($('#xpos_1').value);
+        }
+
+
+       /*
+        *  Assign button functionality
+        */
+
+        var intervalLeft;
+        $('#leftButton').mousedown( function(){
+            intervalLeft = setInterval(moveLeft, 50);
+        }).mouseup(function() {
+                    clearInterval(intervalLeft);
+                    updateAll();
+                });
+
+        var intervalRight;
+        $('#rightButton').mousedown( function(){
+            intervalRight = setInterval(moveRight, 50);
+        }).mouseup(function() {
+                    clearInterval(intervalRight);
+                    updateAll();
+                });
+
+        var intervalUp;
+        $('#upButton').mousedown( function(){
+            intervalUp = setInterval(moveUp, 50);
+        }).mouseup(function() {
+                    clearInterval(intervalUp);
+                    updateAll();
+                });
+
+        var intervalDown;
+        $('#downButton').mousedown( function(){
+            intervalDown = setInterval(moveDown, 50);
+        }).mouseup(function() {
+                    clearInterval(intervalDown);
+                    updateAll();
+                });
+
+        var intervalIn;
+        $('#zoomInButton').mousedown( function(){
+            intervalIn = setInterval(zoomIn, 50);
+        }).mouseup(function() {
+                    clearInterval(intervalIn);
+                    updateAll();
+                });
+
+        var intervalOut;
+        $('#zoomOutButton').mousedown( function(){
+            intervalOut = setInterval(zoomOut, 50);
+        }).mouseup(function() {
+                    clearInterval(intervalOut);
+                    updateAll();
+                });
+
+
+    });
+
+</script>

@@ -1,0 +1,55 @@
+<%= stylesheet_link_tag "image-picker" %>
+
+<div class="container">
+<h3>Step 1. Name the Annotation Set</h3>
+
+    <%= form_tag(:action => 'create', :multipart => true) do %>
+        <%= hidden_field_tag 'tmpFile', @tmp %>
+
+            <label class="col1">Name:&nbsp;&nbsp;</label>
+            <%= text_field_tag('feature_name', @short_name, :size => '28', :class => 'textarea') %>
+        </br>
+
+
+        <h3>Step 2. Verify the File Format</h3>
+
+        <div class="bs-callout bs-callout-info" style="width: 800px;">
+            Please check the <i>first column</i> on the uploaded file contains Gene Symbols!
+            If the highlighted column below is not a Gene Symbol the upload will not work properly.
+        </div>
+        <table class="table table-condensed">
+            <col style="background-color: #BCF5A9 !important;"/>
+            <%= htmlRowFromArray(@header, true).html_safe %>
+            <% @previewLines.each do |ln| %>
+                <%= htmlRowFromArray(ln, false).html_safe %>
+            <% end %>
+        </table>
+        </br>
+
+
+        <h3>Step 3. Select an Icon to Assign to the Annotation Set</h3>
+        <%= imagePickerSelect(@availableIcons).html_safe %>
+        <!-- http://rvera.github.io/image-picker/ -->
+
+        </br>
+        <h3> Step 4. Assign the Icon to the Annotation Set</h3>
+        <%= submit_tag "Finalize" , :onclick => "return presubmit();" %>
+    <% end %>
+
+    <div class="col-lg-3">
+<%= javascript_include_tag "image-picker" %>
+                        </div>
+</div>
+
+
+
+<script>
+    $(document).ready( $("select").imagepicker() );
+    function presubmit(){
+        if( $('[name="icon"]')[0].selectedIndex===0 ){
+            alert('You Need to Pick an Icon!');
+            return false;
+        }
+        $('#waitingModal').modal({show:true});
+    }
+</script>

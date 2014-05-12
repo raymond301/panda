@@ -1,0 +1,156 @@
+<%= stylesheet_link_tag "pathway_tables" %>
+<%= javascript_include_tag "raphael-min" %>
+<%#= javascript_include_tag "raphael-zarrow" %>
+
+<script>
+    var hide = true; // tooltip initalization
+    var htmlTable = [];
+
+    function getCurrentTable(i){
+        return htmlTable[i];
+    };
+
+    function whenAvailable(name, callback) {
+        var interval = 10; // ms
+        window.setTimeout(function() {
+            if (window[name]) {
+                callback(window[name]);
+            } else {
+                window.setTimeout(arguments.callee, interval);
+            }
+        }, interval);
+    }
+
+    function drawPathwayImage()
+    {
+        var height = <%=@image.img_height%>, width = <%=@image.img_width%>, iconDim = 25, sidebarWidth = document.getElementById('side-nav').offsetWidth;
+        whenAvailable("Raphael", function(t) {
+            // do something
+
+        var paper = Raphael(sidebarWidth, 60, width, height);
+
+        pathway_img = paper.image('<%=image_path(@image.background)%>', 0, 0, width, height);
+
+        /// Begin Massive Loop through all pathway/entity
+        var lastX, lastY = (0, 0);
+        var hasOverlap = false, myAnnotations = <%= ac_by_id().html_safe%>, myEntities = <%= @pathwayMap.to_json.html_safe %>, acCounts = {};
+        var imgUrl, xOffset, yOffset;
+
+        for (var v = 0; v < myEntities.length; v++) {
+            var x = myEntities[v].x,  y = myEntities[v].y;
+            if (lastX === x && lastY === y) {
+                hasOverlap = true;
+            }
+            lastX = x;
+            lastY = y;
+           // var geneCardURL = 'http://www.genecards.org/cgi-bin/carddisp.pl?gene=' + myEntities[v].gene_symbol;
+            var geneText = 'GeneCard:<strong>' + myEntities[v].gene_symbol + '</strong>';
+            var fullname = myEntities[v].ent_name;
+
+
+
+            if (typeof myAnnotations[myEntities[v].annotation_collection_id] !== 'undefined') {
+                if ($.cookie('annotation_ids_' + myEntities[v].annotation_collection_id) === 'true') {
+                    var locationID = x.toString() + '-' + y.toString();
+                    if (acCounts.hasOwnProperty(locationID)) {
+                        acCounts[locationID]++;
+                    }
+                    else {
+                        acCounts[locationID] = 1;
+                    }
+
+                    imgUrl = myAnnotations[myEntities[v].annotation_collection_id];
+                    htmlTable[v] = myEntities[v].name + '<br>' + myEntities[v].pt;
+                    xOffset = x - ((acCounts[locationID] * iconDim) + 20);
+                    yOffset = y - 26;
+
+                    var icn = paper.image(imgUrl, xOffset, yOffset, iconDim, iconDim);
+                    icn.data('index', v);
+
+                    icn.mouseover(function () {
+                        tooltip.show( getCurrentTable(this.data('index')) );
+                        hide = true;
+                    });
+                    icn.mouseout(function () {
+                        if(hide) {
+                            tooltip.hide();
+                        }
+                    });
+                }
+            }
+
+            /** FOR KEGG & Bioarta STYLE **/
+            if (!hasOverlap) {
+                var geneBox, already_showing = false;
+                if (myEntities[v].ent_shape === 'rectangle') {
+                    var coords = myEntities[v].coords.split(",");
+                    ////could pre calculate x,y adjustment
+                    geneBox = paper.rect(x - (parseInt(coords[0]) / 2), y - (parseInt(coords[1]) / 2), coords[0], coords[1]);
+                }
+                else if (myEntities[v].ent_shape === 'poly') {
+                    // html map -> rapheal coordinate string converted in biocarta uploader
+                    geneBox = paper.path(myEntities[v].coords);
+                }
+                else{
+                    var coords = myEntities[v].coords.split(",");
+                    geneBox = paper.rect(x - (parseInt(coords[0]) / 2), y - (parseInt(coords[1]) / 2), coords[0], coords[1]);
+                    geneBox.attr({'border': '0'});
+                }
+
+                geneBox.attr({
+                    fill: "#FFF", // Must have fill...for mouseover functions to work
+                    opacity: "0.1",
+                    cursor: "cell",
+                });
+
+                plainText = paper.text(x, y-22, fullname).attr({'font-size': 18, fill: 'white'}).hide();
+                bbText =  plainText.getBBox();
+                textBox = paper.rect(bbText.x, bbText.y, bbText.width, bbText.height).attr({fill: '#848484'}).hide();
+                textBox.txt = plainText.toFront();
+                geneBox.data('txtEle', textBox);
+
+                geneBox.data('externaLink', 'http://www.genecards.org/cgi-bin/carddisp.pl?gene=' + myEntities[v].gene_symbol);
+
+                geneBox.mouseover(function () {
+                    if(!already_showing){
+                        this.animate({"fill-opacity": 0 }, 500);
+                        this.data('txtEle').show();
+                        this.data('txtEle').txt.show();
+                        already_showing = true;
+                    }
+                })
+                geneBox.mouseout(function () {
+                    this.animate({"fill-opacity": 0.2}, 500);
+                    this.data('txtEle').hide();
+                    this.data('txtEle').txt.hide();
+                    already_showing = false
+                });
+                geneBox.click(function () {
+                    window.open(this.data('externaLink'), '_blank');
+                });
+                plainText.toFront();
+            }
+
+            hasOverlap = false;
+        }
+        pathway_img.toBack();
+
+
+        });
+    };
+
+
+    /// Additional Logic to hide table, onclick anywhere on the page.
+    $(document).on('click', function(){
+        console.log();
+        if(!hide){hide=true;tooltip.hide();}
+        else{hide=false}
+    });
+
+
+    //$(document).ready(drawPathwayImage());
+    //$(window).load( function() {drawPathwayImage(); } );
+    $(document).on('page:load', drawPathwayImage());
+
+
+</script>

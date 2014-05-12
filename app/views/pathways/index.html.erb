@@ -1,0 +1,43 @@
+<div class="container">
+    </br>
+    <h1>User Uploaded pathways</h1>
+
+
+    <% if @pathways.empty? %>
+        </br>
+        <div class="bs-callout bs-callout-danger" style="width: 600px;">
+            <h4>No Cytoscape Uploaded Pathways Found</h4>
+
+            <p>No one has uploaded a custom pathway yet!</p>
+            <%= link_to 'Start Here', {:action => 'new'}, :class => 'btn btn-default', :style => 'margin-right:50px;' %>
+        </div>
+
+
+    <% else %>
+
+        <%= link_to 'Upload A New Pathway', {:action => 'new'}, {:class => 'btn btn-default pull-right'} %>
+        </br>
+        <table class="table" style="width: 400px;">
+            <thead>
+            <tr>
+                <th>Pathway Name</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <% @pathways.each do |pathway| %>
+                <tr>
+                    <td><%= link_to pathway.name, :controller => 'dashboard', :action => 'pathway_map', :id => pathway.xref %></td>
+                    <td><%= link_to 'Edit', :action => 'edit', :xref => pathway.xref %></td>
+                    <td><%= link_to 'Delete', {:action => 'destroy', :xref => pathway.xref}, method: :delete, data: {confirm: 'Are you sure?' } %></td>
+                </tr>
+            <% end %>
+            </tbody>
+        </table>
+
+    <% end %>
+</div>
+
+

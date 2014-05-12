@@ -1,0 +1,17 @@
+<%= form_for(@annotation_collection) do |f| %>
+  <% if @annotation_collection.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@annotation_collection.errors.count, "error") %> prohibited this annotation_collection from being saved:</h2>
+
+      <ul>
+      <% @annotation_collection.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

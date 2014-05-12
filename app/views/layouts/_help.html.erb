@@ -1,0 +1,119 @@
+<script type="text/javascript">
+    function toggle(Info) {
+        var CState = document.getElementById(Info);
+        CState.style.display = (CState.style.display != 'block')
+                ? 'block' : 'none';
+    }
+</script>
+
+
+<!--Start Help Modal -->
+
+<div class="modal fade" id="FAQ" tabindex="-1" role="dialog" aria-labelledby="helpModal" aria-hidden="true">
+    <div class="modal-dialog" style="width:75%; height=auto">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="modal-title" id="helpModal"><strong>Frequently Asked Questions</strong></h3>
+            </div>
+            <div class="modal-body">
+
+
+                <div class="FAQ" onclick="toggle('faq1')">
+                    1. What is PANDA?
+                    <div id="faq1" class="ANS">
+                        PANDA is the Pathway and Annotation visualization tool.
+                        It allows users to get a high level overview of annotations and data together in the context of
+                        intuitive biological pathways.
+                        PANDA can accept any tab-delimited text file as input, and an icon specified by the user.
+                        The only requirements are that the first column in the text file must correspond to an HGNC
+                        approved gene symbol and that the first line (which represents the headers) starts with a "#".
+
+                        <br><br>
+                        As an example use case, imagine the following three source scenario. An investigator loads copy
+                        number, gene expression, and drug targets to see if there are any relationships.
+                        Because each icon is different from the three sources, one can quickly see whether copy number
+                        and gene expression corresponds to the same gene.
+                        The user can then hover over each icon to see if the fold changes are in the appropriate
+                        direction and p-values are significant (if such data is provided).
+                        If both are showing signs for activation, then the user can quickly search available drugs that
+                        inhibit that gene or others downstream.
+                    </div>
+                </div>
+
+                <div class="FAQ" onclick="toggle('faq2')">
+                    2. Can I use Entrez Gene IDs instead of HGNC Symbols?
+                    <div id="faq2" class="ANS">Unfortunately, PANDA does not support other IDs as inputs.
+                        However, if a user wants to keep Entrez IDs as something that can be seen, they can upload any
+                        tab-delimited file with Entrez IDs as one of the other columns - as long as
+                        the first column is the HGNC Gene Symbol.
+                    </div>
+                </div>
+
+                <div class="FAQ" onclick="toggle('faq3')">
+                    3. KEGG and BioCarta are nice, but they don't have my pathway of interest. How can I use my pathway
+                    with PANDA?
+                    <div id="faq3" class="ANS">To use your own pathways as sources, they must be constructed using
+                        <a href="http://www.cytoscape.org/" target="_blank">Cytoscape</a>.
+                        When you've created the pathways you're interestd in, just export your network as an XGMML file
+                        <strong>AND</strong> as a PNG file -(both available options in Cytoscape).
+                        Once you have your two input files, sign in to PANDA. From the menu, select
+                        <em>Functions=>Upload your Pathway</em> and upload your files.
+                    </div>
+                </div>
+                <div class="FAQ" onclick="toggle('faq4')">
+                    4. How and why would I use the Data Sharing function?
+                    <div id="faq4" class="ANS">
+                        The grouping function allows you to share your annotations with other people in your group,
+                        without them having to upload the data themselves.
+                        <br><br>To add users to a group, first create a new group under the menu
+                        <em>Share=>Create New Group</em>.
+                        First, name your group and add a description so you can refer to it later.
+                        You can set <em>Visibility</em> to Private (so that only members of your group can see the
+                        annotation) or public (anyone using PANDA).
+                        By default, annotations are all private. All annotations that are available to you are
+                        optionally available to members of your group.
+                        Use the checkboxes to select the annotations that you want to share with your group, since some
+                        might not be of interest to them.
+                        Finally, add the usernames of the members and click <em>Create Group</em>.
+                        Members of your group now have access to view your annotations!.
+                    </div>
+                </div>
+
+                <div class="FAQ" onclick="toggle('faq5')">
+                    5. There are links to pathways on the BioCarta website that I don't see in PANDA. Where did they go?
+                    <div id="faq5" class="ANS">
+                        Since PANDA links directly to the source, it is subject to problems with the source website.
+                        We've noticed that some of the BioCarta pathways have broken links and cannot be available until
+                        fixed.
+                        Also, there may be times when their server is down, in which case those pathway sources might be
+                        temporarily unavailable.
+                    </div>
+                </div>
+
+                <!--<div class="FAQ" onclick="toggle('faq6')">-->
+                    <!--6. What is the difference between the Fisher and Ease Test for statistical enrichment?-->
+                    <!--<div id="faq6" class="ANS">-->
+                        <!--A very clear explanation is provided by the DAVID tool-->
+                        <!--<a href="http://david.abcc.ncifcrf.gov/helps/functional_annotation.html">here</a>.-->
+                        <!--Whichever one you choose to use is a matter of preference.-->
+                    <!--</div>-->
+                <!--</div>-->
+                </br>
+                Contact me:
+                <!--<script language="JavaScript">-->
+//                    var u = "moore.raymond";
+//                    var h = "mayo.edu";
+//                    document.write("<a href='" + "mail" + "to:" + u + "@" + h + "'>" + u + "@" + h + "</a>");
+                <!--</script>-->
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div><!-- /.modal -->

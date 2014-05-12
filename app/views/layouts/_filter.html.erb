@@ -1,0 +1,40 @@
+<!-- Filter Modal -->
+<div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+                Enter a list of comma separated Gene Symbols. Only pathways that contain all of the Genes in the query will be returned.
+            </div>
+            <%= form_tag({:controller => 'dashboard', :action => 'index'}, {:role => 'form'}) do %>
+
+                <div class="modal-body">
+                    <div class="row">
+                        <label for="#annotation_collection_id" class="col-xs-4">Gene Symbol(s):</label>
+                        <div class="col-xs-8">
+                            <%= text_field_tag('gene', '', :class => 'form-control', :style => 'width:300px') %>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <%= submit_tag "Submit Query", :class => 'btn btn-info' %>
+                </div>
+            <% end %>
+       </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<br>
+
+<div class="modal fade" id="waitingModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">        
+    <div class="modal-dialog">                
+        <div class="modal-content" style="width: 300px;">                        
+            <div class="modal-body">
+                <%= image_tag("pageloader.gif", :id => "loading-indicator", :size => "256x256") %>
+                <h2>Please Wait...</h2>
+            </div>
+        </div>
+    </div>
+</div>

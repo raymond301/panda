@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PANDA</title>
+    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag params[:controller] if javascript_exists?(params[:controller]) %>
+    <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%= render "layouts/header" %>
+
+<% [:notice, :error, :alert].each do |level| %>
+    <% unless flash[level].blank? %>
+        <div class="alert <%= flash_class(level) %> pull-right" style="position: absolute; top: 60px; right: 15px; max-width:450px; z-index: 100;">
+            <a class="close" onclick="$('.alert').hide()">×</a>
+            <%= content_tag :p, flash[level].html_safe %>
+            <script> createAutoClosingAlert(".alert", 8000); </script>
+        </div>
+    <% end %>
+<% end %>
+
+
+
+
+<% if user_signed_in? %>
+    <div class="container-fixed">
+
+    <div id="main-row" class="row">
+        <% if controller_name != 'pathways' %>
+
+            <div id="side-nav" class="col-xs-2" style="width: 270px !important;height: 400px;">
+                <%= render "layouts/sidebar" %>
+            </div>
+        <%end%>
+
+        <!--<div class="col-md-10" style="margin-top: -40px;"> -->
+        <div class="col-xs-9">
+            <%= yield %>
+        </div>
+    </div>
+    </div>
+
+    <%= render "layouts/help" %>       <!-- Nav: Menu Help -->
+    <%= render "layouts/enrichment" %> <!-- Nav: Enrichment Submission Form -->
+    <%= render "layouts/filter" %>     <!-- Sidebar: Gene Symbol Search Form  &  Spinner Modal -->
+    <%= render "layouts/custom_icon" %>     <!-- Nav: Icon Upload Form -->
+
+<% else %>
+    <%= yield %>
+<% end %>
+
+
+
+</body>
+
+<!-- //= require turbolinks  only after everything else-->
+<%= javascript_include_tag "turbolinks" %>
+<!--[if lt IE 9]>
+    <%= javascript_include_tag "html5shiv.min" %>
+    <%= javascript_include_tag "respond.min" %>
+<![endif]-->
+
+</html>

@@ -1,0 +1,65 @@
+</br>
+<h1>List of Your Current Groups</h1>
+
+
+<% if @groups.empty? %>
+    </br>
+    <div class="bs-callout bs-callout-danger" style="width: 600px;">
+        <h4>No Groups Found</h4>
+
+        <p>You have not shared your annotations with anyone else yet!</p>
+        <%= link_to 'Start Here', new_group_path, :class => 'btn btn-default', :style => 'margin-right:50px;' %>
+    </div>
+
+
+<% else %>
+
+    <%= link_to 'Share Annotations with Another Group', new_group_path, :class => 'btn btn-info pull-right', :style => 'margin-right:50px;' %>
+    </br>
+    <%= form_tag(:controller=>'dashboard', :action=>'select_this_group') do %>
+
+        <table class="table" style="width: 400px;">
+        <thead>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+            <td>
+                <%if user_group.nil?%>
+                    <%= radio_button_tag('current_group_id[]', 0, true ) %>
+                <%else%>
+                    <%= radio_button_tag('current_group_id[]', 0, false ) %>
+                <%end%>
+            </td>
+            <td>Default</td>
+            </tr>
+
+        <% @groups.each do |group| %>
+            <tr>
+                <td>
+                <%if user_group.nil?%>
+                    <%= radio_button_tag('current_group_id[]', group.id, false ) %>
+                <%elsif user_group.id==group.id%>
+                    <%= radio_button_tag('current_group_id[]', group.id, true ) %>
+                <%else%>
+                    <%= radio_button_tag('current_group_id[]', group.id, false ) %>
+                <%end%>
+                </td>
+                <td><%= link_to group.name, group %></td>
+                <td><%= link_to 'Edit', edit_group_path(group) %></td>
+                <td><%= link_to 'Remove', group, method: :delete, data: {confirm: 'Are you sure?' } %></td>
+            </tr>
+        <% end %>
+        </tbody>
+    </table>
+        <%= submit_tag "Switch To This Group" %>
+
+    <%end%>
+
+<% end %>
+

@@ -1,0 +1,41 @@
+
+<!--Start Enrichment Modal -->
+<div class="modal fade" id="Enrichment" tabindex="-1" role="dialog" aria-labelledby="EnrichmentLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:50%; height=auto">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="modal-title" id="EnrichmentLabel"><strong>Test Pathways for Enrichment</strong></h3>
+                Reports Right Tail p-value from <a href="http://mathworld.wolfram.com/FishersExactTest.html" target="_blank">Fisher's Exact Test</a>
+            </div>
+
+            <%= form_tag({:controller => 'dashboard', :action => 'create_enrichment'}, {:role => 'form'}) do %>
+
+                <div class="modal-body">
+                    <div class="row">
+                        <label for="#annotation_collection_id" class="col-xs-4">Name this Enrichment:</label>
+                        <div class="col-xs-8">
+                            <%tmpName = user_annotations.first.name+'_E' rescue 'Enrichment_1' %>
+                            <%= text_field_tag('name', tmpName, :class => 'form-control', :style=>'width:300px') %>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label for="#annotation_collection_id" class="col-xs-4">Select Annotation:</label>
+                        <div class="col-xs-8">
+                            <%= select_tag 'annotation_collection_id', options_for_select(user_annotations.map { |a| [a.name, a.id] }), :class => 'form-control', :style => 'width:300px' %>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>  -->
+                    <%= submit_tag "Calculate", :class => 'btn btn-info', :onclick => "return preAnnotSubmit('Enrichment');" %>
+                </div>
+            <% end %>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+

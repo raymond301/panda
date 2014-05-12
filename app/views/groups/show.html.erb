@@ -1,0 +1,27 @@
+</br></br>
+
+<div class="container">
+
+<table class="table table-bordered" style="max-width: 60%">
+    <tr>
+        <th>Group name:</th><td><%= @group.name %></td>
+    </tr>
+    <tr>
+        <th>Group description:</th><td> <%= @group.description %></td>
+    </tr>
+    <tr>
+        <th>Created by:</th><td><%= User.find(@group.originator).username.to_s %> </td>
+    </tr>
+    <tr>
+        <th>Group Members:</th><td> <%= memberList.html_safe %></td>
+    </tr>
+    <tr>
+        <th>Annotations:</th><td> <%= annotationList.html_safe %></td>
+    </tr>
+</table>
+
+
+
+<%= link_to 'Edit', edit_group_path(@group) %> |
+<%= link_to 'Back', groups_path %>
+         </div>

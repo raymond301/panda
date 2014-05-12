@@ -1,0 +1,77 @@
+<script type="text/javascript">
+    $(document).ready(function () {
+        var checkbox = $('#checkbox').find(':checkbox'), checkboxCookieName = 'checkbox-state';
+
+        checkbox.each(function () {
+            var mycookie = $.cookie($(this).attr('name'));
+            if (mycookie && mycookie == "true") {
+                $(this).prop('checked', mycookie);
+            }
+        });
+        checkbox.change(function () {
+            $.cookie($(this).attr("name"), $(this).prop('checked'), {
+                path: '/',
+                expires: 365
+            });
+
+            <% if controller_name == 'dashboard' %>
+            <% if current_page?(:action => 'pathway_map') %>
+            drawPathwayImage();
+            <%end%>
+            <%end%>
+
+        });
+    });
+    function preAnnotSubmit(out) {
+        if( typeof out !== 'undefined'){
+            $('#'+out).modal({show: false});
+        }
+        $('#waitingModal').modal({show: true});
+    }
+
+
+</script>
+
+<div style="margin-left: 20px; padding-right: 10px; border-right: 3px solid black;">
+
+
+    <button class="btn btn-default " data-toggle="modal" data-target="#filterModal" style="width:165px">
+        <span class="glyphicon glyphicon-plus"></span> Pathway Filter
+    </button>
+    </br>
+    </br>
+
+
+    <h4><strong>ANNOTATION SETS</strong></h4>
+    <hr style="width:165px">
+    <div id="checkbox" style="margin-left:5px">
+        <% user_annotations.each do |anno| %>
+            <p><%= check_box_tag "annotation_ids_#{anno.id}", anno.id %>
+                <%= image_tag(anno.icon) %>
+                <%= label_tag "annotation_ids_#{anno.id}", anno.name[0..13] %>
+                <%= link_to '<span class="glyphicon glyphicon-remove"></span>'.html_safe, anno,
+                            method: :delete, class: 'btn btn-default btn-xs pull-right',
+                              style: 'margin-right:10px;',
+                              data: {confirm: 'Are you sure you want to delete?'}
+                %>
+            </p>
+                <% end %>
+    </div>
+
+
+    <% if !user_enrichments.empty? %>
+        </br>
+        <h4><strong>ENRICHMENTS</strong></h4>
+        <hr style="width:165px">
+        <% mappedAnnot = user_annotations.group_by(&:id) %>
+        <% user_enrichments.each do |enrich| %>
+            <p>
+                <%= image_tag(mappedAnnot[enrich.annotation_collection_id].first.icon, :style => 'border: 2px solid blue;') rescue '' %>
+                <%= label_tag "enrichment_#{enrich.id}", enrich.name[0..15] %>
+                <%= link_to '<span class="glyphicon glyphicon-remove"></span>'.html_safe, dashboard_destroy_enrichment_path(enrich),
+                            :method => :delete, :class => 'btn btn-default btn-xs pull-right',
+                            style: 'margin-right:10px;', data: {confirm: 'Are you sure you want to delete?'} %>
+            </p>
+        <% end %>
+    <% end %>
+</div>

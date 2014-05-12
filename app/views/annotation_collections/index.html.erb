@@ -1,0 +1,25 @@
+<h1>Listing annotation_collections</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @annotation_collections.each do |annotation_collection| %>
+      <tr>
+        <td><%= link_to 'Show', annotation_collection %></td>
+        <td><%= link_to 'Edit', edit_annotation_collection_path(annotation_collection) %></td>
+        <td><%= link_to 'Destroy', annotation_collection, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Annotation collection', new_annotation_collection_path %>

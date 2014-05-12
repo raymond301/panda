@@ -1,0 +1,45 @@
+<div class="container">
+    <%=link_to 'How to Change Node Attributes in Cytoscape', {:action => 'cytoscape_help'}, :class=> 'btn btn-info pull-right', :style=>'margin: 5px 0px;'%>
+    <h1>Upload pathway</h1></br>
+
+    <%= form_tag('create', :multipart => true) do %>
+        <%= hidden_field_tag 'xref', @new_xref %>
+
+        <!--<div class="bs-callout bs-callout-info" style="width: 600px;">-->
+            <!--<h4>Files Needed For This:</h4>-->
+            <!--<p>Cytoscape Exported XGMML file, with "Gene" attribute </p>-->
+            <!--<p>& Cytoscape Exported PNG Image</p>-->
+        <!--</div>-->
+
+        <div class="row">
+            <label for="#file" class="col-xs-2">XGMML File:</label>
+
+            <div class="col-xs-8">
+                <%= file_field_tag 'file', :class => 'form-control', :style => 'width:400px' %>
+            </div>
+        </div>
+        </br>
+        <div class="row">
+            <label for="#image" class="col-xs-2">PNG File:</label>
+
+            <div class="col-xs-8">
+                <%= file_field_tag('image', :class => 'form-control', :style => 'width:400px') %>
+            </div>
+        </div>
+        </br>
+        <div class="row">
+            <label for="#name" class="col-xs-2">Pathway Display Name:</label>
+
+            <div class="col-xs-8">
+                <%= text_field_tag('name', '', :class => 'form-control', :style => 'width:400px') %>
+            </div>
+        </div>
+        </br>
+        <%= submit_tag "Upload New Pathway", :class => "btn btn-info" %>
+        <%#= link_to 'Back', pathways_path, :class => "pull-right", :style => "margin-right:50px;" %>
+
+    <% end %>
+
+
+</div>
+

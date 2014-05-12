@@ -1,0 +1,31 @@
+    <div class="row">
+        <table id="pathwaysTable" class="table table-striped">
+            <%= index_header().html_safe %>
+            <tbody>
+            <% @pathwayTable.each do |p| %>
+                <tr>
+                    <td style="text-align:left; min-width: 140px; max-width: 250px;"><%= link_to p.name, :action => 'pathway_map', :id => p.xref %></td>
+                    <td><%= p.source %></td>
+                    <% if @counts[p.xref].blank? %>
+                        <td>0</td>
+                    <% else %>
+                        <% @counts[p.xref].each do |c| %>
+                            <% if c.countable_type != 'Enrichment' %>
+                                <td><%= c.count.to_i %></td>
+                            <% else %>
+                                <td><%= c.count %></td>
+                            <% end %>
+                        <% end %>
+                    <% end %>
+                </tr>
+            <% end %>
+            </table>
+    </div>
+
+
+
+<script>
+$(function () {
+    $("#pathwaysTable").tablesorter();
+});
+</script>

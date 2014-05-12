@@ -1,0 +1,49 @@
+
+   </br>
+
+<%if current_user.admin%>
+    Welcome Admin!
+       <table class="table" style="width: 50%">
+               <%@icons.each_with_index do |e, i|%>
+                     <tr>
+                         <td><%=i%></td>
+                    <td><%=e%></td>
+                         <td><%=image_tag(e.sub('app/assets/images/', ''))%></td>
+                         <td><%= e.match(/_(\d+)\.png$/).captures[0] rescue 'x' %></td>
+                         <td><%= link_to '<span class="glyphicon glyphicon-remove"></span>'.html_safe,
+                                     {:controller =>'dashboard', :action =>'destroy_custom_icon', :fh => e},
+                                     :method => :delete, :class => 'btn btn-default btn-xs pull-right',
+                                     :style => 'margin-right:10px;', data: {confirm: 'Are you sure you want to delete?'} %></td>
+
+                     </tr>
+               <%end%>
+
+
+
+<%else%>
+    <%if @icons.blank?%>
+           <div class="bs-callout bs-callout-danger" style="width: 600px;">
+               <h4>No Icons for <%=current_user.username%></h4>
+
+               <p>You have not uploaded any custom icon images!</p>
+               <a data-toggle="modal" href="#iconModal" class="btn btn-default">Add a Custom Icon Here</a>
+           </div>
+
+    <%else%>
+    <%=current_user.username%>'s Icons
+
+       <table class="table" style="width: 50%">
+           <tr><th>File Name</th><th>Icon</th></tr>
+           <%@icons.each do |e|%>
+               <tr>
+                   <td><%=e.split("/").last%></td>
+                   <td><%=image_tag(e.sub('app/assets/images/', ''))%></td>
+                   <td><%= link_to '<span class="glyphicon glyphicon-remove"></span>'.html_safe,
+                                   {:controller =>'dashboard', :action =>'destroy_custom_icon', :fh => e},
+                                   :method => :delete, :class => 'btn btn-default btn-xs pull-right',
+                                   :style => 'margin-right:10px;', data: {confirm: 'Are you sure you want to delete?'} %></td>
+
+               </tr>
+           <%end%>
+     <%end%>
+<%end%>

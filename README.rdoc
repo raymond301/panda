@@ -1,0 +1,77 @@
+== README
+
+Steps to Launch this app:
+
+* Ruby 1.9+ & Rails 4 installed
+
+* cd panda
+
+* bundle install   (to get dependancies from Gemfile)
+
+* rake db:setup  or db:migrate:reset  (Database creation)
+
+* rake db:seed   (Database initialization)
+
+* rails runner lib/tasks/kegg_ETL.rb   (populate KEGG Pathways)
+
+
+
+
+Please feel free to use a different markup language if you do not plan to run
+<tt>rake doc:app</tt>.
+
+
+
+Notes from JP:
+3. cursor in sortable table is "text" --> not easily doable...browser default behavor of tables.
+5. Invalid Genes needs to be apart of the upload process. -> show notification and ask if it should keep the ones that worked or not?
+    a. after upload - send message
+    b. name file -> name of file + "unmapped"
+    c. delete after they visit.
+12. different terminologies for cytoscape pathways
+
+
+
+complete
+11. if there is only 1 user, the "data sharing" in the header should be Gray-out.
+1. in no annotation exists, send user directly to new annotaion page.
+9. shorten the 1st column on the index table
+6. Default the annotation name -> to the file name.
+4. select the annotation by default - NEED
+2. add up/down icons for sortable table  (nice to have)
+7. default name for enrichment should be the annotation name.
+8. associate the enrichment to the annotation icon...but add a colored square around it.
+10. remove the good/green boxes for uploading enrichment.
+13. add help for custom pathways on the upload page.
+14. Get rid of blue help box on custom pathways
+
+
+
+SELECT COUNT(*) FROM genes;
++----------+
+| COUNT(*) |
++----------+
+|    33551 |
++----------+
+
+                 SELECT COUNT(*) FROM gene_synonyms;
+                 +----------+
+                 | COUNT(*) |
+                 +----------+
+                 |    76580 |
+                 +----------+
+
+                 SELECT COUNT(DISTINCT(name)) FROM gene_synonyms WHERE define = 'Symbol';
+                 +-----------------------+
+                 | COUNT(DISTINCT(name)) |
+                 +-----------------------+
+                 |                 36058 |
+                 +-----------------------+
+                 1 row in set (0.34 sec)
+
+                 mysql> SELECT COUNT(name) FROM gene_synonyms WHERE define = 'Symbol';
+                 +-------------+
+                 | COUNT(name) |
+                 +-------------+
+                 |       37412 |
+                 +-------------+
