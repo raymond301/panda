@@ -38,7 +38,7 @@ class Pathway < ActiveRecord::Base
               ent_name: node.attr("label"),
               ent_shape: node.css("graphics")[0].attr("type"),
               x: myX,
-              y: myX,
+              y: myY,
               gene_symbol: gn.symbol,
               coords: myW+','+myH
           )
