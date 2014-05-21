@@ -24,6 +24,7 @@ Panda::Application.routes.draw do
   delete "dashboard/destroy_enrichment"
   get "dashboard/options"
   get "dashboard/adminView"
+  get "dashboard/su"
   get "dashboard/download_tmp"
   post "dashboard/create_icon"
   delete "dashboard/destroy_tmp"

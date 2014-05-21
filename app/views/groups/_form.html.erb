@@ -19,8 +19,14 @@
 
         <h3>Annotations to share:</h3>
         <div id="checkbox" style="margin-left:5px">
+            <% hasTheseAnnotations=@group.annotation_collections.map{|n|n.id} rescue []%>
             <% user_annotations.each do |anno| %>
-                <p><%= check_box_tag "group[annotation_collection_ids][]", anno.id %>
+                <p>
+                    <%if hasTheseAnnotations.include?(anno.id)%>
+                        <%= check_box_tag "group[annotation_collection_ids][]", anno.id, :checked => true %>
+                    <%else%>
+                        <%= check_box_tag "group[annotation_collection_ids][]", anno.id %>
+                    <%end%>
                     <%= image_tag(anno.icon) %>
                     <%= label_tag dom_id(anno), anno.name, :class => "check_box_label" %>
                 </p>
@@ -29,7 +35,9 @@
 
         <h3>Users belonging to this group</h3>
         <h5 style="margin-left: 20px;">*Comma Seperated for multiple Users</h5>
-        <%= f.autocomplete_field :username, autocomplete_user_username_users_path, :"data-delimiter" => ',', :style => 'width:350px;' %>
+
+        <% hasTheseUsers=@group.users.map{|u| u.username}.join(', ') rescue ''%>
+        <%= f.autocomplete_field :username, autocomplete_user_username_users_path, :value=>hasTheseUsers, :"data-delimiter" => ',', :style => 'width:350px;' %>
 
 
         <p style="margin: 10px 250px;">

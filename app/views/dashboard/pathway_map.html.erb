@@ -2,9 +2,25 @@
 <%= javascript_include_tag "raphael-min" %>
 <%#= javascript_include_tag "raphael-zarrow" %>
 
+<div class="modal fade" id="pathwayTable" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog pathwayDialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="pathwayTableTitle"></h4>
+            </div>
+            <div class="modal-body" id="pathwayTableBody"></div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <script>
     var hide = true; // tooltip initalization
+    var currentIndex;
     var htmlTable = [];
+    var myEntities = <%= @pathwayMap.to_json.html_safe %>
 
     function getCurrentTable(i){
         return htmlTable[i];
@@ -33,7 +49,7 @@
 
         /// Begin Massive Loop through all pathway/entity
         var lastX, lastY = (0, 0);
-        var hasOverlap = false, myAnnotations = <%= ac_by_id().html_safe%>, myEntities = <%= @pathwayMap.to_json.html_safe %>, acCounts = {};
+        var hasOverlap = false, myAnnotations = <%= ac_by_id().html_safe%>, acCounts = {};
         var imgUrl, xOffset, yOffset;
 
         for (var v = 0; v < myEntities.length; v++) {
@@ -70,6 +86,8 @@
                     icn.mouseover(function () {
                         tooltip.show( getCurrentTable(this.data('index')) );
                         hide = true;
+                        currentIndex = this.data('index');
+                        console.log(currentIndex);
                     });
                     icn.mouseout(function () {
                         if(hide) {
@@ -142,8 +160,19 @@
 
     /// Additional Logic to hide table, onclick anywhere on the page.
     $(document).on('click', function(){
-        console.log();
-        if(!hide){hide=true;tooltip.hide();}
+        if(!hide){
+            hide=true;
+            tooltip.hide();
+            var modalTitle = document.getElementById('pathwayTableTitle');
+            modalTitle.innerText = myEntities[currentIndex].gene_symbol;
+
+            var modalBody = document.getElementById('pathwayTableBody');
+            modalBody.innerHTML = getCurrentTable(currentIndex).replace('class="table"', 'class="table table-striped"');
+
+            $('#pathwayTable').modal('show');
+        }
+
+        //if(!hide){hide=true;tooltip.hide();}
         else{hide=false}
     });
 

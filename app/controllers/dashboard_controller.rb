@@ -103,4 +103,10 @@ class DashboardController < ApplicationController
     @users=User.all()
     @pathStats = PathwayMap.find_by_sql("SELECT source, COUNT(DISTINCT(xref)) AS cnt FROM pathway_maps GROUP BY source;")
   end
+
+  def su
+    sign_in :user, User.find(params[:id])
+    redirect_to :root
+  end
+
 end

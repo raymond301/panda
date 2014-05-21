@@ -46,6 +46,10 @@ class GroupsController < ApplicationController
   def update
     respond_to do |format|
       if @group.update(group_params)
+        @group.annotation_collections << AnnotationCollection.find_all_by_id( params[:group][:annotation_collection_ids] )
+
+        @group.users << User.find(:all, :conditions=>['username IN (?)', params[:group][:username].split(",") ])
+
         format.html { redirect_to @group, notice: 'Group was successfully updated.' }
         format.json { head :no_content }
       else
