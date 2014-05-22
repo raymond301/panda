@@ -37,6 +37,17 @@
         }, interval);
     }
 
+    function iconCLicked(index){
+        var modalTitle = document.getElementById('pathwayTableTitle');
+        modalTitle.innerText = myEntities[index].gene_symbol;
+
+        var modalBody = document.getElementById('pathwayTableBody');
+        modalBody.innerHTML = getCurrentTable(index).replace('class="table"', 'class="table table-striped"');
+
+        console.log('Event Clicked')
+        $('#pathwayTable').modal('show');
+    }
+
     function drawPathwayImage()
     {
         var height = <%=@image.img_height%>, width = <%=@image.img_width%>, iconDim = 25, sidebarWidth = document.getElementById('side-nav').offsetWidth;
@@ -93,6 +104,10 @@
                         if(hide) {
                             tooltip.hide();
                         }
+                    });
+                    icn.click(function () {
+                        tooltip.hide();
+                        iconCLicked( this.data('index') )
                     });
                 }
             }
@@ -156,26 +171,6 @@
 
         });
     };
-
-
-    /// Additional Logic to hide table, onclick anywhere on the page.
-    $(document).on('click', function(){
-        if(!hide){
-            hide=true;
-            tooltip.hide();
-            var modalTitle = document.getElementById('pathwayTableTitle');
-            modalTitle.innerText = myEntities[currentIndex].gene_symbol;
-
-            var modalBody = document.getElementById('pathwayTableBody');
-            modalBody.innerHTML = getCurrentTable(currentIndex).replace('class="table"', 'class="table table-striped"');
-
-            $('#pathwayTable').modal('show');
-        }
-
-        //if(!hide){hide=true;tooltip.hide();}
-        else{hide=false}
-    });
-
 
     //$(document).ready(drawPathwayImage());
     //$(window).load( function() {drawPathwayImage(); } );
