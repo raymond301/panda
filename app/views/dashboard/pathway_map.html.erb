@@ -126,7 +126,9 @@
                 }
                 else{
                     var coords = myEntities[v].coords.split(",");
-                    geneBox = paper.rect(x - (parseInt(coords[0]) / 2), y - (parseInt(coords[1]) / 2), coords[0], coords[1]);
+                    var xTmp=parseInt(coords[0])
+                    var yTmp=parseInt(coords[1])
+                    geneBox = paper.rect(xTmp, yTmp, parseInt(coords[2])-xTmp, parseInt(coords[3])-yTmp );
                     geneBox.attr({'border': '0'});
                 }
 

@@ -48,8 +48,8 @@ allPathways.links.each do |pharmLink|
     end
 
     corners = areaTag['coords'].split(',')
-    w=corners[2].to_i - corners[0].to_i
-    h=corners[3].to_i - corners[1].to_i
+    #w=corners[2].to_i - corners[0].to_i
+    #h=corners[3].to_i - corners[1].to_i
 
     existGn = Gene.find_by_symbol( cleanedGene ) rescue nil
     if existGn.nil? && areaTag['onclick'] =~ /\/views\/pathway/
@@ -67,9 +67,9 @@ allPathways.links.each do |pharmLink|
             ent_url: pharmBASE+lk['href'],
             ent_name: lk['text'].upcase,
             ent_shape: areaTag['shape'],
-            x: (corners[0].to_i + 15 ), y: (corners[1].to_i + 10),
+            x: (corners[0].to_i ), y: (corners[1].to_i ),
             gene_symbol: existSubGn.symbol,
-            coords: w.to_s+','+h.to_s
+            coords: areaTag['coords']
         )
         pm.save!
           end
@@ -91,7 +91,7 @@ allPathways.links.each do |pharmLink|
           ent_shape: areaTag['shape'],
           x: (corners[0].to_i + 23 ), y: (corners[1].to_i + 12),
           gene_symbol: existGn.symbol,
-          coords: w.to_s+','+h.to_s
+          coords: areaTag['coords']
       )
       pm.save!
 

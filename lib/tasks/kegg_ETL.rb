@@ -11,6 +11,9 @@ numOfPathways=0
 ############ ETL KEGG #################
 ## rails runner lib/tasks/kegg_ETL.rb
 
+## check for tmp directory
+tmpDir = Rails.root.join('public', 'tmpLoading')
+Dir.mkdir tmpDir unless Dir.exists?(tmpDir)
 
 #### Run out to web for KEGG pathways ####
 page=Nokogiri::HTML(open(keggBASE).read)
