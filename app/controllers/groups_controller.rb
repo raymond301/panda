@@ -4,7 +4,7 @@ class GroupsController < ApplicationController
   # GET /groups
   # GET /groups.json
   def index
-    @groups = Group.my_groups(current_user)
+    @groups = Group.my_groups(current_user)  rescue []
   end
 
   # GET /groups/1
@@ -62,6 +62,8 @@ class GroupsController < ApplicationController
   # DELETE /groups/1
   # DELETE /groups/1.json
   def destroy
+    current_user.current_group_id = 0;
+    current_user.save!
     @group.destroy
     respond_to do |format|
       format.html { redirect_to groups_url }

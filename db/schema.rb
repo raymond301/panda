@@ -121,6 +121,9 @@ ActiveRecord::Schema.define(version: 20140417182714) do
     t.integer "annotation_collection_id"
   end
 
+  add_index "pathway_maps", ["annotation_collection_id"], name: "index_pathway_maps_on_annotation_collection_id", using: :btree
+  add_index "pathway_maps", ["gene_symbol"], name: "index_pathway_maps_on_gene_symbol", using: :btree
+  add_index "pathway_maps", ["originator"], name: "index_pathway_maps_on_originator", using: :btree
   add_index "pathway_maps", ["xref"], name: "index_pathway_maps_on_xref", using: :btree
 
   create_table "pathways", force: true do |t|

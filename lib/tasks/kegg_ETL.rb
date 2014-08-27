@@ -63,21 +63,22 @@ allLinks.each do |pwLink|
       end
 
       pGeneList = Array.new
+      acceptedGene = Array.new
       kgml.entries.each do |e|
         if e.category == "gene"
 
-          AcceptedGene = Array.new
+          acceptedGene.clear
           e.graphics[0].name.gsub("...", '').split(", ").each do |gname|
             gn = Gene.find_by_symbol(gname)
             if !gn.nil?
-              AcceptedGene.push(gname)
+              acceptedGene.push(gname)
             end
           end
 
-          pGeneList.push(AcceptedGene)
-          fullName = AcceptedGene.join(", ")
+          pGeneList.push(acceptedGene)
+          fullName = acceptedGene.join(", ")
 
-          AcceptedGene.each do |gName|
+          acceptedGene.each do |gName|
 
             pm = PathwayMap.new(name: pwLink.content, xref: kgml.name.gsub(":", '_'), url: pwLink['href'],
                 source: 'KEGG', originator: 1, ent_url: e.link, ent_name: fullName,

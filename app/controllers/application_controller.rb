@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
     if current_user.current_group_id == 0
         return nil
     else
-      Group.find(current_user.current_group_id)
+      Group.find(current_user.current_group_id) rescue nil
     end
   end
 
