@@ -51,7 +51,7 @@ class PathwayMap < ActiveRecord::Base
 
     collectInserts=Array.new
     myMaps.each do |m|
-      duppedStr="'#{m.name}','#{m.source}','#{m.xref}','#{m.ent_url}','#{m.ent_name}','#{m.ent_shape}','#{m.x}','#{m.y}','#{m.gene_symbol}','#{m.coords}'"
+      duppedStr= "#{ActiveRecord::Base::sanitize(m.name)},'#{m.source}','#{m.xref}',#{ActiveRecord::Base::sanitize(m.ent_url)},#{ActiveRecord::Base::sanitize(m.ent_name)},'#{m.ent_shape}','#{m.x}','#{m.y}','#{m.gene_symbol}','#{m.coords}'"
       santable= ActiveRecord::Base::sanitize( attr[:data] )
       newStatement =  "(#{duppedStr},#{attr[:annotation_collection_id]},#{santable})"
       collectInserts.push( newStatement )
