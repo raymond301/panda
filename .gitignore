@@ -24,3 +24,5 @@ Seeded Storage
 /public/assets/*
 
 /log/*log
+
+*.DS_Store
