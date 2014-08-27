@@ -116,7 +116,7 @@ allPathways.links.each do |pharmLink|
 
 
 
-  sleep 1
+  sleep Random.rand(10)
   numOfPathways+=1
 
   #if numOfPathways >= 7
