@@ -2,32 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="12cf6580-23d7-4bc9-a5d6-f73c784ebf9f" name="Default" comment="switch table click to modal and fixed group editing">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/system/pathway_images/backgrounds/000/000/003/original/dme04391.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/system/pathway_images/backgrounds/000/000/003/thumb/dme04391.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/system/pathway_images/backgrounds/000/000/010/original/hsa04020.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/system/pathway_images/backgrounds/000/000/010/thumb/hsa04020.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/system/pathway_images/backgrounds/000/000/006/original/hsa04064.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/system/pathway_images/backgrounds/000/000/006/thumb/hsa04064.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/system/pathway_images/backgrounds/000/000/008/original/hsa04066.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/system/pathway_images/backgrounds/000/000/008/thumb/hsa04066.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/system/pathway_images/backgrounds/000/000/009/original/hsa04068.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/system/pathway_images/backgrounds/000/000/009/thumb/hsa04068.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/system/pathway_images/backgrounds/000/000/001/original/hsa04350.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/system/pathway_images/backgrounds/000/000/001/thumb/hsa04350.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/system/pathway_images/backgrounds/000/000/004/original/hsa04370.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/system/pathway_images/backgrounds/000/000/004/thumb/hsa04370.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/system/pathway_images/backgrounds/000/000/002/original/hsa04390.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/system/pathway_images/backgrounds/000/000/002/thumb/hsa04390.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/system/pathway_images/backgrounds/000/000/005/original/hsa04630.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/system/pathway_images/backgrounds/000/000/005/thumb/hsa04630.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/system/pathway_images/backgrounds/000/000/007/original/hsa04668.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/system/pathway_images/backgrounds/000/000/007/thumb/hsa04668.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/dashboard/adminView.html.erb" afterPath="$PROJECT_DIR$/app/views/dashboard/adminView.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/application_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/application_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/groups_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/groups_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/tasks/kegg_ETL.rb" afterPath="$PROJECT_DIR$/lib/tasks/kegg_ETL.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/dashboard/pathway_map.html.erb" afterPath="$PROJECT_DIR$/app/views/dashboard/pathway_map.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="panda.iws" />
@@ -61,7 +35,7 @@
     <file path="/Gemfile" changelist="12cf6580-23d7-4bc9-a5d6-f73c784ebf9f" time="1397746408191" ignored="false" />
     <file path="/20140307175356_devise_create_users.rb" changelist="12cf6580-23d7-4bc9-a5d6-f73c784ebf9f" time="1396353647334" ignored="false" />
     <file path="/user.rb" changelist="12cf6580-23d7-4bc9-a5d6-f73c784ebf9f" time="1396362294073" ignored="false" />
-    <file path="/Dummy.txt" changelist="12cf6580-23d7-4bc9-a5d6-f73c784ebf9f" time="1409159512815" ignored="false" />
+    <file path="/Dummy.txt" changelist="12cf6580-23d7-4bc9-a5d6-f73c784ebf9f" time="1409160294896" ignored="false" />
     <file path="/new.html.erb" changelist="12cf6580-23d7-4bc9-a5d6-f73c784ebf9f" time="1397685751351" ignored="false" />
     <file path="/application.html.erb" changelist="12cf6580-23d7-4bc9-a5d6-f73c784ebf9f" time="1399658263186" ignored="false" />
     <file path="/devise.rb" changelist="12cf6580-23d7-4bc9-a5d6-f73c784ebf9f" time="1394221281732" ignored="false" />
@@ -227,7 +201,7 @@
       <file leaf-file-name="kegg_ETL.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/tasks/kegg_ETL.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="68" column="115" selection-start="1665" selection-end="1665" vertical-scroll-proportion="-3.9215686">
+            <state line="68" column="115" selection-start="1665" selection-end="1665" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -316,6 +290,7 @@
     <panes>
       <pane id="PackagesPane" />
       <pane id="RailsProjectView" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -570,7 +545,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -578,14 +552,14 @@
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth0" value="37" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth3" value="37" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth2" value="43" />
-    <property name="options.splitter.main.proportions" value="0.3" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder1" value="1" />
+    <property name="options.splitter.main.proportions" value="0.3" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder0" value="0" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder3" value="3" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder2" value="2" />
-    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth2" value="44" />
-    <property name="MemberChooser.sorted" value="false" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder5" value="5" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth2" value="44" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth1" value="42" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder4" value="4" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth0" value="41" />
@@ -598,20 +572,20 @@
     <property name="FullScreen" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth4" value="61" />
-    <property name="GoToClass.includeLibraries" value="false" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth5" value="384" />
+    <property name="GoToClass.includeLibraries" value="false" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder5" value="5" />
     <property name="options.lastSelected" value="de.qu.idea.plugin.maven.component.MavenBuildProjectComponent" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder5" value="5" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder3" value="3" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder4" value="4" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder1" value="1" />
     <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder2" value="2" />
-    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder0" value="0" />
     <property name="MemberChooser.copyJavadoc" value="false" />
-    <property name="dynamic.classpath" value="false" />
+    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder0" value="0" />
     <property name="options.searchVisible" value="true" />
+    <property name="dynamic.classpath" value="false" />
   </component>
   <component name="PublishConfig" persistUploadOnCheckin="false" />
   <component name="RecentsManager">
@@ -1268,10 +1242,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="2" y="22" width="1316" height="844" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Archetypes" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32976282" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2417127" sideWeight="0.49916527" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2417127" sideWeight="0.49916527" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Maven-2 Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1283,7 +1257,6 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35497236" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.12" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32872927" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1297,6 +1270,7 @@
       <window_info id="SVN Properties" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32891247" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32884097" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.12" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1422,9 +1396,7 @@
     <entry file="file://$PROJECT_DIR$/app/views/dashboard/adminView.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="36" column="85" selection-start="1128" selection-end="1128" vertical-scroll-proportion="-16.25">
-          <folding>
-            <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1479,7 +1451,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/tasks/kegg_ETL.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="68" column="115" selection-start="1665" selection-end="1665" vertical-scroll-proportion="-3.9215686">
+        <state line="68" column="115" selection-start="1665" selection-end="1665" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
