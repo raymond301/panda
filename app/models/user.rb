@@ -13,8 +13,10 @@ class User < ActiveRecord::Base
     else
        AnnotationCollection.find_by_sql("SELECT * FROM annotation_collections AS a JOIN annotation_collections_groups AS g ON a.id = g.annotation_collection_id WHERE g.group_id = #{self.current_group_id} GROUP BY a.id;")
     end
+  end
 
-
+  def my_preset_annotations
+      AnnotationCollection.where(originator_id: nil)
   end
 
   def email_required?

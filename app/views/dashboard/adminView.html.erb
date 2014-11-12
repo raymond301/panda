@@ -38,12 +38,45 @@ Pathway Stats:
         </table>
 <%end%>
 
+
+
+
 </br></br>
 
 
 
+<%if !@allAnnotaions.blank?%>
 
-<script>
+    Annotation Stats:
+    <table id="userTable" class="table table-striped">
+        <thead>
+        <tr>
+            <th>Image</th>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Created</th>
+            <th>Created By</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <%@allAnnotaions.each do |u|%>
+            <tr>
+                <td><%= image_tag(u.icon) %></td>
+                <td><%=u.id%></td>
+                <td><%=u.name%></td>
+                <td><%=u.created_at.strftime("%m/%d/%Y %I:%M%p")%></td>
+                <td><%=User.find(u.originator_id).username rescue 'x'%></td>
+                <td><%=link_to 'Create Preset', :action=>'make_preset', :id=>u.id%></td>
+
+            </tr>
+        <%end%>
+        </table>
+
+<%end%>
+
+
+    <script>
     $(function () {
         $("#userTable").tablesorter();
     });

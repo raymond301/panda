@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   autocomplete :user, :username
 
-  helper_method :user_annotations, :user_enrichments, :user_group, :user_bad_gene_files, :flash_class, :is_stand_alone
+  helper_method :user_annotations, :user_enrichments, :user_presets, :user_group, :user_bad_gene_files, :flash_class, :is_stand_alone
 
   def user_annotations
     current_user.my_annotations_or_group_annotaitons
@@ -14,6 +14,10 @@ class ApplicationController < ActionController::Base
 
   def user_enrichments
     Enrichment.where(originator_id: current_user.id)
+  end
+
+  def user_presets
+    current_user.my_preset_annotations
   end
 
   def user_group

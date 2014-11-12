@@ -24,7 +24,8 @@ module DashboardHelper
 
 
   def ac_by_id
-    return Hash[*user_annotations.map { |x| [x.id, image_path(x.icon.url())] }.flatten].to_json
+    allMyAnnotations = [user_annotations,user_presets].flatten
+    return Hash[*allMyAnnotations.map { |x| [x.id, image_path(x.icon.url())] }.flatten].to_json
   end
 
 end

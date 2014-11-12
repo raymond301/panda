@@ -1,6 +1,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
-        var checkbox = $('#checkbox').find(':checkbox'), checkboxCookieName = 'checkbox-state';
+        var checkbox = $('.check_container').find(':checkbox'), checkboxCookieName = 'checkbox-state';
+        //console.log(checkbox);
 
         checkbox.each(function () {
             var mycookie = $.cookie($(this).attr('name'));
@@ -16,7 +17,7 @@
 
             <% if controller_name == 'dashboard' %>
             <% if current_page?(:action => 'pathway_map') %>
-            drawPathwayImage();
+                drawPathwayImage();
             <%end%>
             <%end%>
 
@@ -44,7 +45,7 @@
 
     <h4><strong>ANNOTATION SETS</strong></h4>
     <hr style="width:165px">
-    <div id="checkbox" style="margin-left:5px">
+    <div id="checkbox" class="check_container" style="margin-left:5px">
         <% user_annotations.each do |anno| %>
             <p><%= check_box_tag "annotation_ids_#{anno.id}", anno.id %>
                 <%= image_tag(anno.icon) %>
@@ -74,4 +75,23 @@
             </p>
         <% end %>
     <% end %>
+
+
+
+
+
+    <% if !user_presets.empty? %>
+        </br>
+        <h4><strong>PRESET ANNOTATION</strong></h4>
+        <hr style="width:165px">
+        <div id="checkbox2" class="check_container" style="margin-left:5px">
+        <% user_presets.each do |anno| %>
+            <p><%= check_box_tag "annotation_ids_#{anno.id}", anno.id %>
+                <%= image_tag(anno.icon) %>
+                <%= label_tag "annotation_ids_#{anno.id}", anno.name[0..13] %>
+            </p>
+        <% end %>
+        </div>
+    <% end %>
+
 </div>

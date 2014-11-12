@@ -25,6 +25,7 @@ Panda::Application.routes.draw do
   get "dashboard/options"
   get "dashboard/adminView"
   get "dashboard/su"
+  get "dashboard/make_preset"
   get "dashboard/download_tmp"
   post "dashboard/create_icon"
   delete "dashboard/destroy_tmp"
