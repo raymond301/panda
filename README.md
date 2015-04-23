@@ -1,5 +1,3 @@
-== README ==
-
 ##Steps to Launch this app:
 
 * Obtain source via git [How To Git](http://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository)
