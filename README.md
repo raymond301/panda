@@ -1,4 +1,4 @@
-== README
+== README ==
 
 ##Steps to Launch this app:
 
@@ -14,7 +14,7 @@
 
 * rake db:setup  or db:migrate:reset  (Database creation)
 
-* rake db:seed   (Database initialization)
+* rake db:seed   (Database initialization, creates admin)
 
 * rails runner lib/tasks/kegg_ETL.rb   (populates KEGG Pathways)
 
@@ -108,3 +108,6 @@ wget https://www.iconfinder.com/icons/54767/download/png/128 -O network.png
 wget https://www.iconfinder.com/icons/54760/download/png/128 -O vine.png
 wget https://www.iconfinder.com/icons/54715/download/png/128 -O star.png
 ```
+
+Only the Admin User can change an uploaded annotation set, into a preloaded annotation:
+Account details in db/seeds.rb
